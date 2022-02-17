@@ -2,59 +2,383 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: ID!
-  name: String!
-  email: String!
+input CreateManyPostsInput {
+  """Array of records to create"""
+  posts: [CreatePostInput!]!
 }
 
-type Post {
-  id: ID!
-  title: String!
-  description: String!
-  author: String!
-  publish: String!
-  postArticle: String!
+input CreateManyUsersInput {
+  """Array of records to create"""
+  users: [CreateUserInput!]!
 }
 
-type Query {
-  users: [User!]!
-  user(id: String!): User!
-  posts: [Post!]!
-  post(id: String!): Post!
+input CreateOnePostInput {
+  """The record to create"""
+  post: CreatePostInput!
 }
 
-type Mutation {
-  createUser(data: CreateUserInput!): User!
-  updateUser(data: UpdateUserInput!, id: String!): User!
-  deleteUser(id: String!): Boolean!
-  createPost(data: CreatePostInput!): Post!
-  updatePost(data: UpdatePostInput!, id: String!): Post!
-  deletePost(id: String!): Boolean!
-}
-
-input CreateUserInput {
-  name: String!
-  email: String!
-}
-
-input UpdateUserInput {
-  name: String!
-  email: String!
+input CreateOneUserInput {
+  """The record to create"""
+  user: CreateUserInput!
 }
 
 input CreatePostInput {
-  title: String!
-  description: String!
   author: String!
-  publish: String!
+  description: String!
   postArticle: String!
+  publish: String!
+  title: String!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+}
+
+input DeleteManyPostsInput {
+  """Filter to find records to delete"""
+  filter: PostDeleteFilter!
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+input DeleteManyUsersInput {
+  """Filter to find records to delete"""
+  filter: UserDeleteFilter!
+}
+
+input DeleteOnePostInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneUserInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+type Mutation {
+  createManyPosts(input: CreateManyPostsInput!): [Post!]!
+  createManyUsers(input: CreateManyUsersInput!): [User!]!
+  createOnePost(input: CreateOnePostInput!): Post!
+  createOneUser(input: CreateOneUserInput!): User!
+  deleteManyPosts(input: DeleteManyPostsInput!): DeleteManyResponse!
+  deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
+  deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
+  deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  updateManyPosts(input: UpdateManyPostsInput!): UpdateManyResponse!
+  updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
+  updateOnePost(input: UpdateOnePostInput!): Post!
+  updateOneUser(input: UpdateOneUserInput!): User!
+}
+
+type OffsetPageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+}
+
+input OffsetPaging {
+  """Limit the number of records returned"""
+  limit: Int
+
+  """Offset to start returning records from"""
+  offset: Int
+}
+
+type Post {
+  author: String!
+  description: String!
+  id: String!
+  postArticle: String!
+  publish: String!
+  title: String!
+}
+
+type PostAggregateGroupBy {
+  author: String
+  description: String
+  postArticle: String
+  publish: String
+  title: String
+}
+
+type PostConnection {
+  """Array of nodes."""
+  nodes: [Post!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type PostCountAggregate {
+  author: Int
+  description: Int
+  postArticle: Int
+  publish: Int
+  title: Int
+}
+
+input PostDeleteFilter {
+  and: [PostDeleteFilter!]
+  author: StringFieldComparison
+  description: StringFieldComparison
+  or: [PostDeleteFilter!]
+  postArticle: StringFieldComparison
+  publish: StringFieldComparison
+  title: StringFieldComparison
+}
+
+type PostDeleteResponse {
+  author: String
+  description: String
+  id: String
+  postArticle: String
+  publish: String
+  title: String
+}
+
+input PostFilter {
+  and: [PostFilter!]
+  author: StringFieldComparison
+  description: StringFieldComparison
+  or: [PostFilter!]
+  postArticle: StringFieldComparison
+  publish: StringFieldComparison
+  title: StringFieldComparison
+}
+
+type PostMaxAggregate {
+  author: String
+  description: String
+  postArticle: String
+  publish: String
+  title: String
+}
+
+type PostMinAggregate {
+  author: String
+  description: String
+  postArticle: String
+  publish: String
+  title: String
+}
+
+input PostSort {
+  direction: SortDirection!
+  field: PostSortFields!
+  nulls: SortNulls
+}
+
+enum PostSortFields {
+  author
+  description
+  postArticle
+  publish
+  title
+}
+
+input PostUpdateFilter {
+  and: [PostUpdateFilter!]
+  author: StringFieldComparison
+  description: StringFieldComparison
+  or: [PostUpdateFilter!]
+  postArticle: StringFieldComparison
+  publish: StringFieldComparison
+  title: StringFieldComparison
+}
+
+type Query {
+  post(
+    """The id of the record to find."""
+    id: ID!
+  ): Post
+  posts(
+    """Specify to filter the records returned."""
+    filter: PostFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [PostSort!] = []
+  ): PostConnection!
+  user(
+    """The id of the record to find."""
+    id: ID!
+  ): User
+  users(
+    """Specify to filter the records returned."""
+    filter: UserFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [UserSort!] = []
+  ): UserConnection!
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input StringFieldComparison {
+  eq: String
+  gt: String
+  gte: String
+  iLike: String
+  in: [String!]
+  is: Boolean
+  isNot: Boolean
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  notILike: String
+  notIn: [String!]
+  notLike: String
+}
+
+input UpdateManyPostsInput {
+  """Filter used to find fields to update"""
+  filter: PostUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdatePostInput!
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+input UpdateManyUsersInput {
+  """Filter used to find fields to update"""
+  filter: UserUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateUserInput!
+}
+
+input UpdateOnePostInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePostInput!
+}
+
+input UpdateOneUserInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateUserInput!
 }
 
 input UpdatePostInput {
-  title: String!
-  description: String!
-  author: String!
-  publish: String!
-  postArticle: String!
+  author: String
+  description: String
+  id: String!
+  postArticle: String
+  publish: String
+  title: String
+}
+
+input UpdateUserInput {
+  email: String
+  id: String!
+  name: String
+}
+
+type User {
+  email: String!
+  id: String!
+  name: String!
+}
+
+type UserAggregateGroupBy {
+  email: String
+  name: String
+}
+
+type UserConnection {
+  """Array of nodes."""
+  nodes: [User!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type UserCountAggregate {
+  email: Int
+  name: Int
+}
+
+input UserDeleteFilter {
+  and: [UserDeleteFilter!]
+  email: StringFieldComparison
+  name: StringFieldComparison
+  or: [UserDeleteFilter!]
+}
+
+type UserDeleteResponse {
+  email: String
+  id: String
+  name: String
+}
+
+input UserFilter {
+  and: [UserFilter!]
+  email: StringFieldComparison
+  name: StringFieldComparison
+  or: [UserFilter!]
+}
+
+type UserMaxAggregate {
+  email: String
+  name: String
+}
+
+type UserMinAggregate {
+  email: String
+  name: String
+}
+
+input UserSort {
+  direction: SortDirection!
+  field: UserSortFields!
+  nulls: SortNulls
+}
+
+enum UserSortFields {
+  email
+  name
+}
+
+input UserUpdateFilter {
+  and: [UserUpdateFilter!]
+  email: StringFieldComparison
+  name: StringFieldComparison
+  or: [UserUpdateFilter!]
 }
