@@ -35,6 +35,31 @@ input CreateUserInput {
   name: String!
 }
 
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 input DeleteManyPostsInput {
   """Filter to find records to delete"""
   filter: PostDeleteFilter!
@@ -93,19 +118,26 @@ input OffsetPaging {
 
 type Post {
   author: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
   description: String!
   id: String!
   postArticle: String!
   publish: String!
   title: String!
+  updatedAt: DateTime!
 }
 
 type PostAggregateGroupBy {
   author: String
+  createdAt: DateTime
+  deletedAt: DateTime
   description: String
+  id: String
   postArticle: String
   publish: String
   title: String
+  updatedAt: DateTime
 }
 
 type PostConnection {
@@ -121,55 +153,78 @@ type PostConnection {
 
 type PostCountAggregate {
   author: Int
+  createdAt: Int
+  deletedAt: Int
   description: Int
+  id: Int
   postArticle: Int
   publish: Int
   title: Int
+  updatedAt: Int
 }
 
 input PostDeleteFilter {
   and: [PostDeleteFilter!]
   author: StringFieldComparison
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   description: StringFieldComparison
+  id: StringFieldComparison
   or: [PostDeleteFilter!]
   postArticle: StringFieldComparison
   publish: StringFieldComparison
   title: StringFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type PostDeleteResponse {
   author: String
+  createdAt: DateTime
+  deletedAt: DateTime
   description: String
   id: String
   postArticle: String
   publish: String
   title: String
+  updatedAt: DateTime
 }
 
 input PostFilter {
   and: [PostFilter!]
   author: StringFieldComparison
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   description: StringFieldComparison
+  id: StringFieldComparison
   or: [PostFilter!]
   postArticle: StringFieldComparison
   publish: StringFieldComparison
   title: StringFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type PostMaxAggregate {
   author: String
+  createdAt: DateTime
+  deletedAt: DateTime
   description: String
+  id: String
   postArticle: String
   publish: String
   title: String
+  updatedAt: DateTime
 }
 
 type PostMinAggregate {
   author: String
+  createdAt: DateTime
+  deletedAt: DateTime
   description: String
+  id: String
   postArticle: String
   publish: String
   title: String
+  updatedAt: DateTime
 }
 
 input PostSort {
@@ -180,20 +235,28 @@ input PostSort {
 
 enum PostSortFields {
   author
+  createdAt
+  deletedAt
   description
+  id
   postArticle
   publish
   title
+  updatedAt
 }
 
 input PostUpdateFilter {
   and: [PostUpdateFilter!]
   author: StringFieldComparison
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   description: StringFieldComparison
+  id: StringFieldComparison
   or: [PostUpdateFilter!]
   postArticle: StringFieldComparison
   publish: StringFieldComparison
   title: StringFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type Query {
@@ -309,14 +372,21 @@ input UpdateUserInput {
 }
 
 type User {
+  createdAt: DateTime!
+  deletedAt: DateTime!
   email: String!
   id: String!
   name: String!
+  updatedAt: DateTime!
 }
 
 type UserAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
   email: String
+  id: String
   name: String
+  updatedAt: DateTime
 }
 
 type UserConnection {
@@ -331,38 +401,61 @@ type UserConnection {
 }
 
 type UserCountAggregate {
+  createdAt: Int
+  deletedAt: Int
   email: Int
+  id: Int
   name: Int
+  updatedAt: Int
 }
 
 input UserDeleteFilter {
   and: [UserDeleteFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   email: StringFieldComparison
+  id: StringFieldComparison
   name: StringFieldComparison
   or: [UserDeleteFilter!]
+  updatedAt: DateFieldComparison
 }
 
 type UserDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
   email: String
   id: String
   name: String
+  updatedAt: DateTime
 }
 
 input UserFilter {
   and: [UserFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   email: StringFieldComparison
+  id: StringFieldComparison
   name: StringFieldComparison
   or: [UserFilter!]
+  updatedAt: DateFieldComparison
 }
 
 type UserMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
   email: String
+  id: String
   name: String
+  updatedAt: DateTime
 }
 
 type UserMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
   email: String
+  id: String
   name: String
+  updatedAt: DateTime
 }
 
 input UserSort {
@@ -372,13 +465,21 @@ input UserSort {
 }
 
 enum UserSortFields {
+  createdAt
+  deletedAt
   email
+  id
   name
+  updatedAt
 }
 
 input UserUpdateFilter {
   and: [UserUpdateFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
   email: StringFieldComparison
+  id: StringFieldComparison
   name: StringFieldComparison
   or: [UserUpdateFilter!]
+  updatedAt: DateFieldComparison
 }
