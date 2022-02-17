@@ -1,22 +1,22 @@
 import {
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+    CreateDateColumn,
+    DeleteDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm'
 
 @Entity()
 export class BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string
 
-  @CreateDateColumn()
-  createdAt: Date;
+    @CreateDateColumn()
+    createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+    @UpdateDateColumn()
+    updatedAt: Date
 
-  @DeleteDateColumn()
-  deletedAt: Date;
+    @DeleteDateColumn()
+    deletedAt: Date
 }
