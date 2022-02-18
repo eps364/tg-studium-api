@@ -10,5 +10,5 @@ export class CreatePostInput {
 
     publish: Date
 
-    postArticle: Date
+    postArticle: string
 }

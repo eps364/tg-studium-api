@@ -17,7 +17,7 @@ export class Post extends BaseEntity {
     publish: Date
 
     @Column()
-    postArticle: Date
+    postArticle: string
 
     @ManyToOne(() => User, (user) => user.posts)
     user: User

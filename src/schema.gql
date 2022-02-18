@@ -33,7 +33,7 @@ input CreateOneUserInput {
 input CreatePostInput {
   author: String!
   description: String!
-  postArticle: DateTime!
+  postArticle: String!
   publish: DateTime!
   title: String!
 }
@@ -136,7 +136,7 @@ type Post {
   description: String!
   id: String!
   postArticle: String!
-  publish: String!
+  publish: DateTime!
   title: String!
   updatedAt: DateTime!
   user: User!
@@ -149,7 +149,7 @@ type PostAggregateGroupBy {
   description: String
   id: String
   postArticle: String
-  publish: String
+  publish: DateTime
   title: String
   updatedAt: DateTime
 }
@@ -186,7 +186,7 @@ input PostDeleteFilter {
   id: StringFieldComparison
   or: [PostDeleteFilter!]
   postArticle: StringFieldComparison
-  publish: StringFieldComparison
+  publish: DateFieldComparison
   title: StringFieldComparison
   updatedAt: DateFieldComparison
 }
@@ -198,7 +198,7 @@ type PostDeleteResponse {
   description: String
   id: String
   postArticle: String
-  publish: String
+  publish: DateTime
   title: String
   updatedAt: DateTime
 }
@@ -212,7 +212,7 @@ input PostFilter {
   id: StringFieldComparison
   or: [PostFilter!]
   postArticle: StringFieldComparison
-  publish: StringFieldComparison
+  publish: DateFieldComparison
   title: StringFieldComparison
   updatedAt: DateFieldComparison
   user: PostFilterUserFilter
@@ -236,7 +236,7 @@ type PostMaxAggregate {
   description: String
   id: String
   postArticle: String
-  publish: String
+  publish: DateTime
   title: String
   updatedAt: DateTime
 }
@@ -248,7 +248,7 @@ type PostMinAggregate {
   description: String
   id: String
   postArticle: String
-  publish: String
+  publish: DateTime
   title: String
   updatedAt: DateTime
 }
@@ -280,7 +280,7 @@ input PostUpdateFilter {
   id: StringFieldComparison
   or: [PostUpdateFilter!]
   postArticle: StringFieldComparison
-  publish: StringFieldComparison
+  publish: DateFieldComparison
   title: StringFieldComparison
   updatedAt: DateFieldComparison
 }
@@ -418,7 +418,7 @@ input UpdatePostInput {
   author: String
   description: String
   id: String!
-  postArticle: DateTime
+  postArticle: String
   publish: DateTime
   title: String
 }
@@ -518,7 +518,7 @@ input UserFilterPostFilter {
   id: StringFieldComparison
   or: [UserFilterPostFilter!]
   postArticle: StringFieldComparison
-  publish: StringFieldComparison
+  publish: DateFieldComparison
   title: StringFieldComparison
   updatedAt: DateFieldComparison
 }

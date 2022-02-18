@@ -19,7 +19,7 @@ export class PostDTO extends BaseDTO {
     author: string
 
     @FilterableField()
-    publish: string
+    publish: Date
 
     @FilterableField()
     postArticle: string
