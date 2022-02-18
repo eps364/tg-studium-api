@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddPostsToUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input CreateManyPostsInput {
   """Array of records to create"""
   posts: [CreatePostInput!]!
@@ -25,8 +33,8 @@ input CreateOneUserInput {
 input CreatePostInput {
   author: String!
   description: String!
-  postArticle: String!
-  publish: String!
+  postArticle: DateTime!
+  publish: DateTime!
   title: String!
 }
 
@@ -86,6 +94,7 @@ input DeleteOneUserInput {
 }
 
 type Mutation {
+  addPostsToUser(input: AddPostsToUserInput!): User!
   createManyPosts(input: CreateManyPostsInput!): [Post!]!
   createManyUsers(input: CreateManyUsersInput!): [User!]!
   createOnePost(input: CreateOnePostInput!): Post!
@@ -94,6 +103,10 @@ type Mutation {
   deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
   deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  removePostsFromUser(input: RemovePostsFromUserInput!): User!
+  removeUserFromPost(input: RemoveUserFromPostInput!): Post!
+  setPostsOnUser(input: SetPostsOnUserInput!): User!
+  setUserOnPost(input: SetUserOnPostInput!): Post!
   updateManyPosts(input: UpdateManyPostsInput!): UpdateManyResponse!
   updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
   updateOnePost(input: UpdateOnePostInput!): Post!
@@ -126,6 +139,7 @@ type Post {
   publish: String!
   title: String!
   updatedAt: DateTime!
+  user: User!
 }
 
 type PostAggregateGroupBy {
@@ -200,6 +214,18 @@ input PostFilter {
   postArticle: StringFieldComparison
   publish: StringFieldComparison
   title: StringFieldComparison
+  updatedAt: DateFieldComparison
+  user: PostFilterUserFilter
+}
+
+input PostFilterUserFilter {
+  and: [PostFilterUserFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  email: StringFieldComparison
+  id: StringFieldComparison
+  name: StringFieldComparison
+  or: [PostFilterUserFilter!]
   updatedAt: DateFieldComparison
 }
 
@@ -290,6 +316,38 @@ type Query {
   ): UserConnection!
 }
 
+input RemovePostsFromUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input RemoveUserFromPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetPostsOnUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetUserOnPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
 """Sort Directions"""
 enum SortDirection {
   ASC
@@ -360,8 +418,8 @@ input UpdatePostInput {
   author: String
   description: String
   id: String!
-  postArticle: String
-  publish: String
+  postArticle: DateTime
+  publish: DateTime
   title: String
 }
 
@@ -377,6 +435,16 @@ type User {
   email: String!
   id: String!
   name: String!
+  posts(
+    """Specify to filter the records returned."""
+    filter: PostFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [PostSort!] = []
+  ): UserPostsConnection
   updatedAt: DateTime!
 }
 
@@ -437,6 +505,21 @@ input UserFilter {
   id: StringFieldComparison
   name: StringFieldComparison
   or: [UserFilter!]
+  posts: UserFilterPostFilter
+  updatedAt: DateFieldComparison
+}
+
+input UserFilterPostFilter {
+  and: [UserFilterPostFilter!]
+  author: StringFieldComparison
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  description: StringFieldComparison
+  id: StringFieldComparison
+  or: [UserFilterPostFilter!]
+  postArticle: StringFieldComparison
+  publish: StringFieldComparison
+  title: StringFieldComparison
   updatedAt: DateFieldComparison
 }
 
@@ -456,6 +539,17 @@ type UserMinAggregate {
   id: String
   name: String
   updatedAt: DateTime
+}
+
+type UserPostsConnection {
+  """Array of nodes."""
+  nodes: [Post!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input UserSort {

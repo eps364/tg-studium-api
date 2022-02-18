@@ -1,5 +1,6 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
-import { Column, Entity } from 'typeorm'
+import { User } from 'src/modules/users/entities/users.entity'
+import { Column, Entity, ManyToOne } from 'typeorm'
 
 @Entity()
 export class Post extends BaseEntity {
@@ -13,8 +14,11 @@ export class Post extends BaseEntity {
     author: string
 
     @Column()
-    publish: string
+    publish: Date
 
     @Column()
-    postArticle: string
+    postArticle: Date
+
+    @ManyToOne(() => User, (user) => user.posts)
+    user: User
 }
