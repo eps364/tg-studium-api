@@ -1,7 +1,4 @@
-import {
-    NestjsQueryGraphQLModule,
-    PagingStrategies,
-} from '@nestjs-query/query-graphql'
+import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm'
 import { Module } from '@nestjs/common'
 import { CreateUserInput } from './dto/create-user.input'
@@ -19,8 +16,6 @@ import { User } from './entities/users.entity'
                     EntityClass: User,
                     CreateDTOClass: CreateUserInput,
                     UpdateDTOClass: UpdateUserInput,
-                    enableTotalCount: true,
-                    pagingStrategy: PagingStrategies.OFFSET,
                 },
             ],
         }),

@@ -2,13 +2,13 @@ import { BaseEntity } from 'src/common/bases/entities/base.entity'
 import { Column, Entity } from 'typeorm'
 
 @Entity()
-export class User extends BaseEntity {
+export class Comment extends BaseEntity {
     @Column()
-    userName: string
+    postId: string
 
     @Column()
-    userEmail: string
+    userId: string
 
     @Column()
-    userPassword: string
+    commentBody: string
 }

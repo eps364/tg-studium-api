@@ -1,12 +1,15 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { Module } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { join } from 'path'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { PostModule } from './modules/posts/posts.module'
-import { UserModule } from './modules/users/users.module'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { CommentModule } from './modules/comments/comments.module';
+import { ComplaintModule } from './modules/complaints/complaints.module';
+import { LikeModule } from './modules/likes/likes.module';
+import { PostModule } from './modules/posts/posts.module';
+import { UserModule } from './modules/users/users.module';
 
 @Module({
     imports: [
@@ -20,6 +23,9 @@ import { UserModule } from './modules/users/users.module'
         }),
         UserModule,
         PostModule,
+        CommentModule,
+        LikeModule,
+        ComplaintModule,
     ],
 
     controllers: [AppController],

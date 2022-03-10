@@ -1,24 +1,41 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
-import { User } from 'src/modules/users/entities/users.entity'
-import { Column, Entity, ManyToOne } from 'typeorm'
+import { Column, Entity } from 'typeorm'
 
 @Entity()
 export class Post extends BaseEntity {
     @Column()
-    title: string
+    postTitle: string
 
     @Column()
-    description: string
+    postBody: string
+
+    //TODO: rascunho, agendado ou publicar agora
+    //TODO: Tabela Status do Post ou ENUM
+    @Column()
+    postStatus: number
+
+    //TODO: Ralacionar com o usuario
+    @Column()
+    userId: string
 
     @Column()
-    author: string
+    postImageURL: string
 
+    // TODO: (private ou public)
+    // TODO: Tabela ou ENUM
     @Column()
-    publish: Date
+    category: string
 
+    //TODO: (vetor opcional*)
     @Column()
-    postArticle: string
+    tags: string
 
-    @ManyToOne(() => User, (user) => user.posts)
-    user: User
+    // TODO: (private ou public)
+    // TODO: Tabela ou ENUM
+    @Column()
+    postVisibility: number
+
+    // TODO: Usado no agendado
+    @Column()
+    postDateTime: Date
 }

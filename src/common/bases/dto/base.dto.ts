@@ -3,15 +3,27 @@ import { ObjectType } from '@nestjs/graphql'
 
 @ObjectType()
 export class BaseDTO {
-    @FilterableField()
+    @FilterableField({
+        allowedComparisons: ['eq', 'neq', 'in', 'notIn'],
+        nullable: true,
+    })
     id: string
 
-    @FilterableField()
-    createdAt: Date
+    @FilterableField({
+        allowedComparisons: ['eq', 'neq', 'in', 'notIn'],
+        nullable: true,
+    })
+    createdAt?: Date
 
-    @FilterableField()
-    updatedAt: Date
+    @FilterableField({
+        allowedComparisons: ['eq', 'neq', 'in', 'notIn'],
+        nullable: true,
+    })
+    updatedAt?: Date
 
-    @FilterableField()
-    deletedAt: Date
+    @FilterableField({
+        allowedComparisons: ['eq', 'neq', 'in', 'notIn'],
+        nullable: true,
+    })
+    deletedAt?: Date
 }

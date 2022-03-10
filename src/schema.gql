@@ -2,12 +2,292 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AddPostsToUserInput {
-  """The id of the record."""
-  id: ID!
+type Comments {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
 
-  """The ids of the relations."""
-  relationIds: [ID!]!
+type CommentsAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type CommentsConnection {
+  """Array of edges."""
+  edges: [CommentsEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type CommentsCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  updatedAt: Int
+}
+
+input CommentsCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+input CommentsDeleteFilter {
+  and: [CommentsDeleteFilter!]
+  createdAt: CommentsCreatedAtFilterComparison
+  deletedAt: CommentsDeletedAtFilterComparison
+  id: CommentsIdFilterComparison
+  or: [CommentsDeleteFilter!]
+  updatedAt: CommentsUpdatedAtFilterComparison
+}
+
+type CommentsDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input CommentsDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type CommentsEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Comments"""
+  node: Comments!
+}
+
+input CommentsFilter {
+  and: [CommentsFilter!]
+  createdAt: CommentsCreatedAtFilterComparison
+  deletedAt: CommentsDeletedAtFilterComparison
+  id: CommentsIdFilterComparison
+  or: [CommentsFilter!]
+  updatedAt: CommentsUpdatedAtFilterComparison
+}
+
+input CommentsIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
+}
+
+type CommentsMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type CommentsMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input CommentsSort {
+  direction: SortDirection!
+  field: CommentsSortFields!
+  nulls: SortNulls
+}
+
+enum CommentsSortFields {
+  createdAt
+  deletedAt
+  id
+  updatedAt
+}
+
+input CommentsUpdateFilter {
+  and: [CommentsUpdateFilter!]
+  createdAt: CommentsCreatedAtFilterComparison
+  deletedAt: CommentsDeletedAtFilterComparison
+  id: CommentsIdFilterComparison
+  or: [CommentsUpdateFilter!]
+  updatedAt: CommentsUpdatedAtFilterComparison
+}
+
+input CommentsUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type Complaint {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type ComplaintAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type ComplaintConnection {
+  """Array of edges."""
+  edges: [ComplaintEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type ComplaintCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  updatedAt: Int
+}
+
+input ComplaintCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+input ComplaintDeleteFilter {
+  and: [ComplaintDeleteFilter!]
+  createdAt: ComplaintCreatedAtFilterComparison
+  deletedAt: ComplaintDeletedAtFilterComparison
+  id: ComplaintIdFilterComparison
+  or: [ComplaintDeleteFilter!]
+  updatedAt: ComplaintUpdatedAtFilterComparison
+}
+
+type ComplaintDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input ComplaintDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type ComplaintEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Complaint"""
+  node: Complaint!
+}
+
+input ComplaintFilter {
+  and: [ComplaintFilter!]
+  createdAt: ComplaintCreatedAtFilterComparison
+  deletedAt: ComplaintDeletedAtFilterComparison
+  id: ComplaintIdFilterComparison
+  or: [ComplaintFilter!]
+  updatedAt: ComplaintUpdatedAtFilterComparison
+}
+
+input ComplaintIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
+}
+
+type ComplaintMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type ComplaintMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input ComplaintSort {
+  direction: SortDirection!
+  field: ComplaintSortFields!
+  nulls: SortNulls
+}
+
+enum ComplaintSortFields {
+  createdAt
+  deletedAt
+  id
+  updatedAt
+}
+
+input ComplaintUpdateFilter {
+  and: [ComplaintUpdateFilter!]
+  createdAt: ComplaintCreatedAtFilterComparison
+  deletedAt: ComplaintDeletedAtFilterComparison
+  id: ComplaintIdFilterComparison
+  or: [ComplaintUpdateFilter!]
+  updatedAt: ComplaintUpdatedAtFilterComparison
+}
+
+input ComplaintUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input CreateCommentInput {
+  commentBody: String!
+  postId: Float!
+  userId: String!
+}
+
+input CreateComplaintInput {
+  comentId: String!
+  type: Float!
+  userId: String!
+}
+
+input CreateLikeInput {
+  comentId: String!
+  type: Float!
+  userId: String!
+}
+
+input CreateManyCommentsInput {
+  """Array of records to create"""
+  comments: [CreateCommentInput!]!
+}
+
+input CreateManyComplaintsInput {
+  """Array of records to create"""
+  complaints: [CreateComplaintInput!]!
+}
+
+input CreateManyLikesInput {
+  """Array of records to create"""
+  likes: [CreateLikeInput!]!
 }
 
 input CreateManyPostsInput {
@@ -18,6 +298,21 @@ input CreateManyPostsInput {
 input CreateManyUsersInput {
   """Array of records to create"""
   users: [CreateUserInput!]!
+}
+
+input CreateOneCommentsInput {
+  """The record to create"""
+  comments: CreateCommentInput!
+}
+
+input CreateOneComplaintInput {
+  """The record to create"""
+  complaint: CreateComplaintInput!
+}
+
+input CreateOneLikeInput {
+  """The record to create"""
+  like: CreateLikeInput!
 }
 
 input CreateOnePostInput {
@@ -31,42 +326,55 @@ input CreateOneUserInput {
 }
 
 input CreatePostInput {
-  author: String!
-  description: String!
-  postArticle: String!
-  publish: DateTime!
-  title: String!
+  category: String!
+  postBody: String!
+  postDateTime: DateTime!
+  postImageURL: String!
+  postStatus: Float!
+  postTitle: String!
+  postVisibility: Float!
+  tags: String!
 }
 
 input CreateUserInput {
-  email: String!
-  name: String!
+  userEmail: String!
+  userName: String!
+  userPassword: String!
 }
 
-input DateFieldComparison {
-  between: DateFieldComparisonBetween
-  eq: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  is: Boolean
-  isNot: Boolean
-  lt: DateTime
-  lte: DateTime
-  neq: DateTime
-  notBetween: DateFieldComparisonBetween
-  notIn: [DateTime!]
-}
+input CursorPaging {
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
 
-input DateFieldComparisonBetween {
-  lower: DateTime!
-  upper: DateTime!
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+input DeleteManyCommentsInput {
+  """Filter to find records to delete"""
+  filter: CommentsDeleteFilter!
+}
+
+input DeleteManyComplaintsInput {
+  """Filter to find records to delete"""
+  filter: ComplaintDeleteFilter!
+}
+
+input DeleteManyLikesInput {
+  """Filter to find records to delete"""
+  filter: LikeDeleteFilter!
+}
 
 input DeleteManyPostsInput {
   """Filter to find records to delete"""
@@ -83,6 +391,21 @@ input DeleteManyUsersInput {
   filter: UserDeleteFilter!
 }
 
+input DeleteOneCommentsInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneComplaintInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneLikeInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 input DeleteOnePostInput {
   """The id of the record to delete."""
   id: ID!
@@ -93,22 +416,164 @@ input DeleteOneUserInput {
   id: ID!
 }
 
+type Like {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type LikeAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type LikeConnection {
+  """Array of edges."""
+  edges: [LikeEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type LikeCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  updatedAt: Int
+}
+
+input LikeCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+input LikeDeleteFilter {
+  and: [LikeDeleteFilter!]
+  createdAt: LikeCreatedAtFilterComparison
+  deletedAt: LikeDeletedAtFilterComparison
+  id: LikeIdFilterComparison
+  or: [LikeDeleteFilter!]
+  updatedAt: LikeUpdatedAtFilterComparison
+}
+
+type LikeDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input LikeDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type LikeEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Like"""
+  node: Like!
+}
+
+input LikeFilter {
+  and: [LikeFilter!]
+  createdAt: LikeCreatedAtFilterComparison
+  deletedAt: LikeDeletedAtFilterComparison
+  id: LikeIdFilterComparison
+  or: [LikeFilter!]
+  updatedAt: LikeUpdatedAtFilterComparison
+}
+
+input LikeIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
+}
+
+type LikeMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type LikeMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input LikeSort {
+  direction: SortDirection!
+  field: LikeSortFields!
+  nulls: SortNulls
+}
+
+enum LikeSortFields {
+  createdAt
+  deletedAt
+  id
+  updatedAt
+}
+
+input LikeUpdateFilter {
+  and: [LikeUpdateFilter!]
+  createdAt: LikeCreatedAtFilterComparison
+  deletedAt: LikeDeletedAtFilterComparison
+  id: LikeIdFilterComparison
+  or: [LikeUpdateFilter!]
+  updatedAt: LikeUpdatedAtFilterComparison
+}
+
+input LikeUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
 type Mutation {
-  addPostsToUser(input: AddPostsToUserInput!): User!
+  createManyComments(input: CreateManyCommentsInput!): [Comments!]!
+  createManyComplaints(input: CreateManyComplaintsInput!): [Complaint!]!
+  createManyLikes(input: CreateManyLikesInput!): [Like!]!
   createManyPosts(input: CreateManyPostsInput!): [Post!]!
   createManyUsers(input: CreateManyUsersInput!): [User!]!
+  createOneComments(input: CreateOneCommentsInput!): Comments!
+  createOneComplaint(input: CreateOneComplaintInput!): Complaint!
+  createOneLike(input: CreateOneLikeInput!): Like!
   createOnePost(input: CreateOnePostInput!): Post!
   createOneUser(input: CreateOneUserInput!): User!
+  deleteManyComments(input: DeleteManyCommentsInput!): DeleteManyResponse!
+  deleteManyComplaints(input: DeleteManyComplaintsInput!): DeleteManyResponse!
+  deleteManyLikes(input: DeleteManyLikesInput!): DeleteManyResponse!
   deleteManyPosts(input: DeleteManyPostsInput!): DeleteManyResponse!
   deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
+  deleteOneComments(input: DeleteOneCommentsInput!): CommentsDeleteResponse!
+  deleteOneComplaint(input: DeleteOneComplaintInput!): ComplaintDeleteResponse!
+  deleteOneLike(input: DeleteOneLikeInput!): LikeDeleteResponse!
   deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
-  removePostsFromUser(input: RemovePostsFromUserInput!): User!
-  removeUserFromPost(input: RemoveUserFromPostInput!): Post!
-  setPostsOnUser(input: SetPostsOnUserInput!): User!
-  setUserOnPost(input: SetUserOnPostInput!): Post!
+  updateManyComments(input: UpdateManyCommentsInput!): UpdateManyResponse!
+  updateManyComplaints(input: UpdateManyComplaintsInput!): UpdateManyResponse!
+  updateManyLikes(input: UpdateManyLikesInput!): UpdateManyResponse!
   updateManyPosts(input: UpdateManyPostsInput!): UpdateManyResponse!
   updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
+  updateOneComments(input: UpdateOneCommentsInput!): Comments!
+  updateOneComplaint(input: UpdateOneComplaintInput!): Complaint!
+  updateOneLike(input: UpdateOneLikeInput!): Like!
   updateOnePost(input: UpdateOnePostInput!): Post!
   updateOneUser(input: UpdateOneUserInput!): User!
 }
@@ -129,28 +594,31 @@ input OffsetPaging {
   offset: Int
 }
 
+type PageInfo {
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+}
+
 type Post {
-  author: String!
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  description: String!
-  id: String!
-  postArticle: String!
-  publish: DateTime!
-  title: String!
-  updatedAt: DateTime!
-  user: User!
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
 }
 
 type PostAggregateGroupBy {
-  author: String
   createdAt: DateTime
   deletedAt: DateTime
-  description: String
   id: String
-  postArticle: String
-  publish: DateTime
-  title: String
   updatedAt: DateTime
 }
 
@@ -166,90 +634,69 @@ type PostConnection {
 }
 
 type PostCountAggregate {
-  author: Int
   createdAt: Int
   deletedAt: Int
-  description: Int
   id: Int
-  postArticle: Int
-  publish: Int
-  title: Int
   updatedAt: Int
+}
+
+input PostCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
 
 input PostDeleteFilter {
   and: [PostDeleteFilter!]
-  author: StringFieldComparison
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  description: StringFieldComparison
-  id: StringFieldComparison
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
   or: [PostDeleteFilter!]
-  postArticle: StringFieldComparison
-  publish: DateFieldComparison
-  title: StringFieldComparison
-  updatedAt: DateFieldComparison
+  updatedAt: PostUpdatedAtFilterComparison
 }
 
 type PostDeleteResponse {
-  author: String
   createdAt: DateTime
   deletedAt: DateTime
-  description: String
   id: String
-  postArticle: String
-  publish: DateTime
-  title: String
   updatedAt: DateTime
+}
+
+input PostDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
 
 input PostFilter {
   and: [PostFilter!]
-  author: StringFieldComparison
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  description: StringFieldComparison
-  id: StringFieldComparison
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
   or: [PostFilter!]
-  postArticle: StringFieldComparison
-  publish: DateFieldComparison
-  title: StringFieldComparison
-  updatedAt: DateFieldComparison
-  user: PostFilterUserFilter
+  updatedAt: PostUpdatedAtFilterComparison
 }
 
-input PostFilterUserFilter {
-  and: [PostFilterUserFilter!]
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  email: StringFieldComparison
-  id: StringFieldComparison
-  name: StringFieldComparison
-  or: [PostFilterUserFilter!]
-  updatedAt: DateFieldComparison
+input PostIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
 }
 
 type PostMaxAggregate {
-  author: String
   createdAt: DateTime
   deletedAt: DateTime
-  description: String
   id: String
-  postArticle: String
-  publish: DateTime
-  title: String
   updatedAt: DateTime
 }
 
 type PostMinAggregate {
-  author: String
   createdAt: DateTime
   deletedAt: DateTime
-  description: String
   id: String
-  postArticle: String
-  publish: DateTime
-  title: String
   updatedAt: DateTime
 }
 
@@ -260,32 +707,67 @@ input PostSort {
 }
 
 enum PostSortFields {
-  author
   createdAt
   deletedAt
-  description
   id
-  postArticle
-  publish
-  title
   updatedAt
 }
 
 input PostUpdateFilter {
   and: [PostUpdateFilter!]
-  author: StringFieldComparison
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  description: StringFieldComparison
-  id: StringFieldComparison
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
   or: [PostUpdateFilter!]
-  postArticle: StringFieldComparison
-  publish: DateFieldComparison
-  title: StringFieldComparison
-  updatedAt: DateFieldComparison
+  updatedAt: PostUpdatedAtFilterComparison
+}
+
+input PostUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
 
 type Query {
+  comments(
+    """Specify to filter the records returned."""
+    filter: CommentsFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [CommentsSort!] = []
+  ): CommentsConnection!
+  complaint(
+    """The id of the record to find."""
+    id: ID!
+  ): Complaint
+  complaints(
+    """Specify to filter the records returned."""
+    filter: ComplaintFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [ComplaintSort!] = []
+  ): ComplaintConnection!
+  like(
+    """The id of the record to find."""
+    id: ID!
+  ): Like
+  likes(
+    """Specify to filter the records returned."""
+    filter: LikeFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [LikeSort!] = []
+  ): LikeConnection!
   post(
     """The id of the record to find."""
     id: ID!
@@ -309,43 +791,11 @@ type Query {
     filter: UserFilter = {}
 
     """Limit or page results."""
-    paging: OffsetPaging = {limit: 10}
+    paging: CursorPaging = {first: 10}
 
     """Specify to sort results."""
     sorting: [UserSort!] = []
   ): UserConnection!
-}
-
-input RemovePostsFromUserInput {
-  """The id of the record."""
-  id: ID!
-
-  """The ids of the relations."""
-  relationIds: [ID!]!
-}
-
-input RemoveUserFromPostInput {
-  """The id of the record."""
-  id: ID!
-
-  """The id of relation."""
-  relationId: ID!
-}
-
-input SetPostsOnUserInput {
-  """The id of the record."""
-  id: ID!
-
-  """The ids of the relations."""
-  relationIds: [ID!]!
-}
-
-input SetUserOnPostInput {
-  """The id of the record."""
-  id: ID!
-
-  """The id of relation."""
-  relationId: ID!
 }
 
 """Sort Directions"""
@@ -360,21 +810,49 @@ enum SortNulls {
   NULLS_LAST
 }
 
-input StringFieldComparison {
-  eq: String
-  gt: String
-  gte: String
-  iLike: String
-  in: [String!]
-  is: Boolean
-  isNot: Boolean
-  like: String
-  lt: String
-  lte: String
-  neq: String
-  notILike: String
-  notIn: [String!]
-  notLike: String
+input UpdateCommentInput {
+  commentBody: String
+  id: Float!
+  postId: Float
+  userId: String
+}
+
+input UpdateComplaintInput {
+  comentId: String
+  id: Float!
+  type: Float
+  userId: String
+}
+
+input UpdateLikeInput {
+  comentId: String
+  id: Float!
+  type: Float
+  userId: String
+}
+
+input UpdateManyCommentsInput {
+  """Filter used to find fields to update"""
+  filter: CommentsUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateCommentInput!
+}
+
+input UpdateManyComplaintsInput {
+  """Filter used to find fields to update"""
+  filter: ComplaintUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateComplaintInput!
+}
+
+input UpdateManyLikesInput {
+  """Filter used to find fields to update"""
+  filter: LikeUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateLikeInput!
 }
 
 input UpdateManyPostsInput {
@@ -398,6 +876,30 @@ input UpdateManyUsersInput {
   update: UpdateUserInput!
 }
 
+input UpdateOneCommentsInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateCommentInput!
+}
+
+input UpdateOneComplaintInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateComplaintInput!
+}
+
+input UpdateOneLikeInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateLikeInput!
+}
+
 input UpdateOnePostInput {
   """The id of the record to update"""
   id: ID!
@@ -415,141 +917,119 @@ input UpdateOneUserInput {
 }
 
 input UpdatePostInput {
-  author: String
-  description: String
+  category: String
   id: String!
-  postArticle: String
-  publish: DateTime
-  title: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
+  postTitle: String
+  postVisibility: Float
+  tags: String
 }
 
 input UpdateUserInput {
-  email: String
   id: String!
-  name: String
+  userEmail: String
+  userName: String
+  userPassword: String
 }
 
 type User {
-  createdAt: DateTime!
-  deletedAt: DateTime!
-  email: String!
-  id: String!
-  name: String!
-  posts(
-    """Specify to filter the records returned."""
-    filter: PostFilter = {}
-
-    """Limit or page results."""
-    paging: OffsetPaging = {limit: 10}
-
-    """Specify to sort results."""
-    sorting: [PostSort!] = []
-  ): UserPostsConnection
-  updatedAt: DateTime!
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
 }
 
 type UserAggregateGroupBy {
   createdAt: DateTime
   deletedAt: DateTime
-  email: String
   id: String
-  name: String
   updatedAt: DateTime
 }
 
 type UserConnection {
-  """Array of nodes."""
-  nodes: [User!]!
+  """Array of edges."""
+  edges: [UserEdge!]!
 
   """Paging information"""
-  pageInfo: OffsetPageInfo!
-
-  """Fetch total count of records"""
-  totalCount: Int!
+  pageInfo: PageInfo!
 }
 
 type UserCountAggregate {
   createdAt: Int
   deletedAt: Int
-  email: Int
   id: Int
-  name: Int
   updatedAt: Int
+}
+
+input UserCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
 
 input UserDeleteFilter {
   and: [UserDeleteFilter!]
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  email: StringFieldComparison
-  id: StringFieldComparison
-  name: StringFieldComparison
+  createdAt: UserCreatedAtFilterComparison
+  deletedAt: UserDeletedAtFilterComparison
+  id: UserIdFilterComparison
   or: [UserDeleteFilter!]
-  updatedAt: DateFieldComparison
+  updatedAt: UserUpdatedAtFilterComparison
 }
 
 type UserDeleteResponse {
   createdAt: DateTime
   deletedAt: DateTime
-  email: String
   id: String
-  name: String
   updatedAt: DateTime
+}
+
+input UserDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type UserEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the User"""
+  node: User!
 }
 
 input UserFilter {
   and: [UserFilter!]
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  email: StringFieldComparison
-  id: StringFieldComparison
-  name: StringFieldComparison
+  createdAt: UserCreatedAtFilterComparison
+  deletedAt: UserDeletedAtFilterComparison
+  id: UserIdFilterComparison
   or: [UserFilter!]
-  posts: UserFilterPostFilter
-  updatedAt: DateFieldComparison
+  updatedAt: UserUpdatedAtFilterComparison
 }
 
-input UserFilterPostFilter {
-  and: [UserFilterPostFilter!]
-  author: StringFieldComparison
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  description: StringFieldComparison
-  id: StringFieldComparison
-  or: [UserFilterPostFilter!]
-  postArticle: StringFieldComparison
-  publish: DateFieldComparison
-  title: StringFieldComparison
-  updatedAt: DateFieldComparison
+input UserIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
 }
 
 type UserMaxAggregate {
   createdAt: DateTime
   deletedAt: DateTime
-  email: String
   id: String
-  name: String
   updatedAt: DateTime
 }
 
 type UserMinAggregate {
   createdAt: DateTime
   deletedAt: DateTime
-  email: String
   id: String
-  name: String
   updatedAt: DateTime
-}
-
-type UserPostsConnection {
-  """Array of nodes."""
-  nodes: [Post!]!
-
-  """Paging information"""
-  pageInfo: OffsetPageInfo!
-
-  """Fetch total count of records"""
-  totalCount: Int!
 }
 
 input UserSort {
@@ -561,19 +1041,22 @@ input UserSort {
 enum UserSortFields {
   createdAt
   deletedAt
-  email
   id
-  name
   updatedAt
 }
 
 input UserUpdateFilter {
   and: [UserUpdateFilter!]
-  createdAt: DateFieldComparison
-  deletedAt: DateFieldComparison
-  email: StringFieldComparison
-  id: StringFieldComparison
-  name: StringFieldComparison
+  createdAt: UserCreatedAtFilterComparison
+  deletedAt: UserDeletedAtFilterComparison
+  id: UserIdFilterComparison
   or: [UserUpdateFilter!]
-  updatedAt: DateFieldComparison
+  updatedAt: UserUpdatedAtFilterComparison
+}
+
+input UserUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
