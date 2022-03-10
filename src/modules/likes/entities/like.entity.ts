@@ -2,13 +2,15 @@ import { BaseEntity } from 'src/common/bases/entities/base.entity'
 import { Column, Entity } from 'typeorm'
 
 @Entity()
-export class User extends BaseEntity {
+export class Like extends BaseEntity {
+    // TODO: Tabela ou ENUM
+    // TODO: Comments, Posts
     @Column()
-    userName: string
+    type: number
 
     @Column()
-    userEmail: string
+    comentId: string
 
     @Column()
-    userPassword: string
+    userId: string
 }

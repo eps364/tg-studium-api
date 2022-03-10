@@ -2,13 +2,19 @@ import { InputType } from '@nestjs/graphql'
 
 @InputType()
 export class CreatePostInput {
-    title: string
+    postTitle: string
 
-    description: string
+    postBody: string
 
-    author: string
+    postStatus: number
 
-    publish: Date
+    postImageURL: string
 
-    postArticle: string
+    category: string
+
+    tags: string
+
+    postVisibility: number
+
+    postDateTime: Date
 }
