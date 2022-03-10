@@ -1,7 +1,7 @@
-import { ObjectType } from '@nestjs/graphql'
-import { BaseDTO } from 'src/common/bases/dto/base.dto'
+import { ObjectType } from '@nestjs/graphql';
+import { BaseDTO } from 'src/common/bases/dto/base.dto';
 
-@ObjectType('User')
+@ObjectType('Like')
 export class LikeDTO extends BaseDTO {
     type: number
 
