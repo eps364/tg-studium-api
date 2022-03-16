@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddPostsToUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 type Comments {
   commentBody: String!
   createdAt: DateTime
@@ -391,14 +399,15 @@ input CreateOneUserInput {
 }
 
 input CreatePostInput {
-  category: String!
-  postBody: String!
-  postDateTime: DateTime!
-  postImageURL: String!
-  postStatus: Float!
+  category: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
   postTitle: String!
-  postVisibility: Float!
-  tags: String!
+  postVisibility: Float
+  tags: String
+  userId: String!
 }
 
 input CreateSessionInput {
@@ -409,26 +418,6 @@ input CreateUserInput {
   userEmail: String!
   userName: String!
   userPassword: String!
-}
-
-input DateFieldComparison {
-  between: DateFieldComparisonBetween
-  eq: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime!]
-  is: Boolean
-  isNot: Boolean
-  lt: DateTime
-  lte: DateTime
-  neq: DateTime
-  notBetween: DateFieldComparisonBetween
-  notIn: [DateTime!]
-}
-
-input DateFieldComparisonBetween {
-  lower: DateTime!
-  upper: DateTime!
 }
 
 """
@@ -661,6 +650,7 @@ input LikeUpdatedAtFilterComparison {
 }
 
 type Mutation {
+  addPostsToUser(input: AddPostsToUserInput!): User!
   createManyComments(input: CreateManyCommentsInput!): [Comments!]!
   createManyComplaints(input: CreateManyComplaintsInput!): [Complaint!]!
   createManyLikes(input: CreateManyLikesInput!): [Like!]!
@@ -685,6 +675,10 @@ type Mutation {
   deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
   deleteOneSession(input: DeleteOneSessionInput!): SessionDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  removePostsFromUser(input: RemovePostsFromUserInput!): User!
+  removeUserFromPost(input: RemoveUserFromPostInput!): Post!
+  setPostsOnUser(input: SetPostsOnUserInput!): User!
+  setUserOnPost(input: SetUserOnPostInput!): Post!
   updateManyComments(input: UpdateManyCommentsInput!): UpdateManyResponse!
   updateManyComplaints(input: UpdateManyComplaintsInput!): UpdateManyResponse!
   updateManyLikes(input: UpdateManyLikesInput!): UpdateManyResponse!
@@ -736,38 +730,20 @@ input OffsetPaging {
 }
 
 type Post {
-  category: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  postBody: String!
-  postDateTime: DateTime!
-  postImageURL: String!
-  postStatus: Float!
-  postTitle: String!
-  postVisibility: Float!
-  tags: String!
   updatedAt: DateTime
+  user: User!
+  userId: String!
 }
 
 type PostAggregateGroupBy {
-  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  postBody: String
-  postDateTime: DateTime
-  postImageURL: String
-  postStatus: Float
-  postTitle: String
-  postVisibility: Float
-  tags: String
   updatedAt: DateTime
-}
-
-type PostAvgAggregate {
-  postStatus: Float
-  postVisibility: Float
+  userId: String
 }
 
 type PostConnection {
@@ -782,18 +758,11 @@ type PostConnection {
 }
 
 type PostCountAggregate {
-  category: Int
   createdAt: Int
   deletedAt: Int
   id: Int
-  postBody: Int
-  postDateTime: Int
-  postImageURL: Int
-  postStatus: Int
-  postTitle: Int
-  postVisibility: Int
-  tags: Int
   updatedAt: Int
+  userId: Int
 }
 
 input PostCreatedAtFilterComparison {
@@ -805,34 +774,20 @@ input PostCreatedAtFilterComparison {
 
 input PostDeleteFilter {
   and: [PostDeleteFilter!]
-  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostDeleteFilter!]
-  postBody: StringFieldComparison
-  postDateTime: DateFieldComparison
-  postImageURL: StringFieldComparison
-  postStatus: NumberFieldComparison
-  postTitle: StringFieldComparison
-  postVisibility: NumberFieldComparison
-  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 type PostDeleteResponse {
-  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  postBody: String
-  postDateTime: DateTime
-  postImageURL: String
-  postStatus: Float
-  postTitle: String
-  postVisibility: Float
-  tags: String
   updatedAt: DateTime
+  userId: String
 }
 
 input PostDeletedAtFilterComparison {
@@ -844,19 +799,24 @@ input PostDeletedAtFilterComparison {
 
 input PostFilter {
   and: [PostFilter!]
-  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostFilter!]
-  postBody: StringFieldComparison
-  postDateTime: DateFieldComparison
-  postImageURL: StringFieldComparison
-  postStatus: NumberFieldComparison
-  postTitle: StringFieldComparison
-  postVisibility: NumberFieldComparison
-  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
+  user: PostFilterUserFilter
+  userId: StringFieldComparison
+}
+
+input PostFilterUserFilter {
+  and: [PostFilterUserFilter!]
+  createdAt: UserCreatedAtFilterComparison
+  deletedAt: UserDeletedAtFilterComparison
+  id: UserIdFilterComparison
+  or: [PostFilterUserFilter!]
+  updatedAt: UserUpdatedAtFilterComparison
+  userEmail: StringFieldComparison
+  userName: StringFieldComparison
 }
 
 input PostIdFilterComparison {
@@ -867,33 +827,19 @@ input PostIdFilterComparison {
 }
 
 type PostMaxAggregate {
-  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  postBody: String
-  postDateTime: DateTime
-  postImageURL: String
-  postStatus: Float
-  postTitle: String
-  postVisibility: Float
-  tags: String
   updatedAt: DateTime
+  userId: String
 }
 
 type PostMinAggregate {
-  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  postBody: String
-  postDateTime: DateTime
-  postImageURL: String
-  postStatus: Float
-  postTitle: String
-  postVisibility: Float
-  tags: String
   updatedAt: DateTime
+  userId: String
 }
 
 input PostSort {
@@ -903,40 +849,21 @@ input PostSort {
 }
 
 enum PostSortFields {
-  category
   createdAt
   deletedAt
   id
-  postBody
-  postDateTime
-  postImageURL
-  postStatus
-  postTitle
-  postVisibility
-  tags
   updatedAt
-}
-
-type PostSumAggregate {
-  postStatus: Float
-  postVisibility: Float
+  userId
 }
 
 input PostUpdateFilter {
   and: [PostUpdateFilter!]
-  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostUpdateFilter!]
-  postBody: StringFieldComparison
-  postDateTime: DateFieldComparison
-  postImageURL: StringFieldComparison
-  postStatus: NumberFieldComparison
-  postTitle: StringFieldComparison
-  postVisibility: NumberFieldComparison
-  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input PostUpdatedAtFilterComparison {
@@ -1027,6 +954,22 @@ type Query {
     """Specify to sort results."""
     sorting: [UserSort!] = []
   ): UserConnection!
+}
+
+input RemovePostsFromUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input RemoveUserFromPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
 }
 
 type Session {
@@ -1148,6 +1091,22 @@ input SessionUpdatedAtFilterComparison {
   in: [DateTime!]
   neq: DateTime
   notIn: [DateTime!]
+}
+
+input SetPostsOnUserInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetUserOnPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
 }
 
 """Sort Directions"""
@@ -1311,6 +1270,7 @@ input UpdatePostInput {
   postTitle: String
   postVisibility: Float
   tags: String
+  userId: String
 }
 
 input UpdateSessionInput {
@@ -1329,6 +1289,16 @@ type User {
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  posts(
+    """Specify to filter the records returned."""
+    filter: PostFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [PostSort!] = []
+  ): UserPostsConnection!
   updatedAt: DateTime
   userEmail: String!
   userName: String!
@@ -1403,9 +1373,20 @@ input UserFilter {
   deletedAt: UserDeletedAtFilterComparison
   id: UserIdFilterComparison
   or: [UserFilter!]
+  posts: UserFilterPostFilter
   updatedAt: UserUpdatedAtFilterComparison
   userEmail: StringFieldComparison
   userName: StringFieldComparison
+}
+
+input UserFilterPostFilter {
+  and: [UserFilterPostFilter!]
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
+  or: [UserFilterPostFilter!]
+  updatedAt: PostUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input UserIdFilterComparison {
@@ -1431,6 +1412,17 @@ type UserMinAggregate {
   updatedAt: DateTime
   userEmail: String
   userName: String
+}
+
+type UserPostsConnection {
+  """Array of nodes."""
+  nodes: [Post!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input UserSort {
