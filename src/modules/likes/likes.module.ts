@@ -1,4 +1,7 @@
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql'
+import {
+    NestjsQueryGraphQLModule,
+    PagingStrategies,
+} from '@nestjs-query/query-graphql'
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm'
 import { Module } from '@nestjs/common'
 import { CreateLikeInput } from './dto/create-like.input'
@@ -17,6 +20,7 @@ import { Like } from './entities/like.entity'
                     CreateDTOClass: CreateLikeInput,
                     UpdateDTOClass: UpdateLikeInput,
                     enableTotalCount: true,
+                    pagingStrategy: PagingStrategies.OFFSET,
                 },
             ],
         }),

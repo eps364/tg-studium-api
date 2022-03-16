@@ -3,32 +3,44 @@
 # ------------------------------------------------------
 
 type Comments {
+  commentBody: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postId: String!
   updatedAt: DateTime
+  userId: String!
 }
 
 type CommentsAggregateGroupBy {
+  commentBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postId: String
   updatedAt: DateTime
+  userId: String
 }
 
 type CommentsConnection {
-  """Array of edges."""
-  edges: [CommentsEdge!]!
+  """Array of nodes."""
+  nodes: [Comments!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type CommentsCountAggregate {
+  commentBody: Int
   createdAt: Int
   deletedAt: Int
   id: Int
+  postId: Int
   updatedAt: Int
+  userId: Int
 }
 
 input CommentsCreatedAtFilterComparison {
@@ -40,18 +52,24 @@ input CommentsCreatedAtFilterComparison {
 
 input CommentsDeleteFilter {
   and: [CommentsDeleteFilter!]
+  commentBody: StringFieldComparison
   createdAt: CommentsCreatedAtFilterComparison
   deletedAt: CommentsDeletedAtFilterComparison
   id: CommentsIdFilterComparison
   or: [CommentsDeleteFilter!]
+  postId: StringFieldComparison
   updatedAt: CommentsUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 type CommentsDeleteResponse {
+  commentBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postId: String
   updatedAt: DateTime
+  userId: String
 }
 
 input CommentsDeletedAtFilterComparison {
@@ -61,21 +79,16 @@ input CommentsDeletedAtFilterComparison {
   notIn: [DateTime!]
 }
 
-type CommentsEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the Comments"""
-  node: Comments!
-}
-
 input CommentsFilter {
   and: [CommentsFilter!]
+  commentBody: StringFieldComparison
   createdAt: CommentsCreatedAtFilterComparison
   deletedAt: CommentsDeletedAtFilterComparison
   id: CommentsIdFilterComparison
   or: [CommentsFilter!]
+  postId: StringFieldComparison
   updatedAt: CommentsUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input CommentsIdFilterComparison {
@@ -86,17 +99,23 @@ input CommentsIdFilterComparison {
 }
 
 type CommentsMaxAggregate {
+  commentBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postId: String
   updatedAt: DateTime
+  userId: String
 }
 
 type CommentsMinAggregate {
+  commentBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postId: String
   updatedAt: DateTime
+  userId: String
 }
 
 input CommentsSort {
@@ -106,19 +125,25 @@ input CommentsSort {
 }
 
 enum CommentsSortFields {
+  commentBody
   createdAt
   deletedAt
   id
+  postId
   updatedAt
+  userId
 }
 
 input CommentsUpdateFilter {
   and: [CommentsUpdateFilter!]
+  commentBody: StringFieldComparison
   createdAt: CommentsCreatedAtFilterComparison
   deletedAt: CommentsDeletedAtFilterComparison
   id: CommentsIdFilterComparison
   or: [CommentsUpdateFilter!]
+  postId: StringFieldComparison
   updatedAt: CommentsUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input CommentsUpdatedAtFilterComparison {
@@ -129,32 +154,48 @@ input CommentsUpdatedAtFilterComparison {
 }
 
 type Complaint {
+  comentId: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float!
   updatedAt: DateTime
+  userId: String!
 }
 
 type ComplaintAggregateGroupBy {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
+}
+
+type ComplaintAvgAggregate {
+  type: Float
 }
 
 type ComplaintConnection {
-  """Array of edges."""
-  edges: [ComplaintEdge!]!
+  """Array of nodes."""
+  nodes: [Complaint!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type ComplaintCountAggregate {
+  comentId: Int
   createdAt: Int
   deletedAt: Int
   id: Int
+  type: Int
   updatedAt: Int
+  userId: Int
 }
 
 input ComplaintCreatedAtFilterComparison {
@@ -166,18 +207,24 @@ input ComplaintCreatedAtFilterComparison {
 
 input ComplaintDeleteFilter {
   and: [ComplaintDeleteFilter!]
+  comentId: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintDeleteFilter!]
+  type: NumberFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 type ComplaintDeleteResponse {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 input ComplaintDeletedAtFilterComparison {
@@ -187,21 +234,16 @@ input ComplaintDeletedAtFilterComparison {
   notIn: [DateTime!]
 }
 
-type ComplaintEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the Complaint"""
-  node: Complaint!
-}
-
 input ComplaintFilter {
   and: [ComplaintFilter!]
+  comentId: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintFilter!]
+  type: NumberFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input ComplaintIdFilterComparison {
@@ -212,17 +254,23 @@ input ComplaintIdFilterComparison {
 }
 
 type ComplaintMaxAggregate {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 type ComplaintMinAggregate {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 input ComplaintSort {
@@ -232,19 +280,29 @@ input ComplaintSort {
 }
 
 enum ComplaintSortFields {
+  comentId
   createdAt
   deletedAt
   id
+  type
   updatedAt
+  userId
+}
+
+type ComplaintSumAggregate {
+  type: Float
 }
 
 input ComplaintUpdateFilter {
   and: [ComplaintUpdateFilter!]
+  comentId: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintUpdateFilter!]
+  type: NumberFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input ComplaintUpdatedAtFilterComparison {
@@ -253,9 +311,6 @@ input ComplaintUpdatedAtFilterComparison {
   neq: DateTime
   notIn: [DateTime!]
 }
-
-"""Cursor for paging through collections"""
-scalar ConnectionCursor
 
 input CreateCommentInput {
   commentBody: String!
@@ -356,18 +411,24 @@ input CreateUserInput {
   userPassword: String!
 }
 
-input CursorPaging {
-  """Paginate after opaque cursor"""
-  after: ConnectionCursor
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
 
-  """Paginate before opaque cursor"""
-  before: ConnectionCursor
-
-  """Paginate first"""
-  first: Int
-
-  """Paginate last"""
-  last: Int
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
 }
 
 """
@@ -441,35 +502,48 @@ input DeleteOneUserInput {
 }
 
 type Like {
+  comentId: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float!
   updatedAt: DateTime
+  userId: String!
 }
 
 type LikeAggregateGroupBy {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
+}
+
+type LikeAvgAggregate {
+  type: Float
 }
 
 type LikeConnection {
-  """Array of edges."""
-  edges: [LikeEdge!]!
+  """Array of nodes."""
+  nodes: [Like!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
 
   """Fetch total count of records"""
   totalCount: Int!
 }
 
 type LikeCountAggregate {
+  comentId: Int
   createdAt: Int
   deletedAt: Int
   id: Int
+  type: Int
   updatedAt: Int
+  userId: Int
 }
 
 input LikeCreatedAtFilterComparison {
@@ -481,18 +555,24 @@ input LikeCreatedAtFilterComparison {
 
 input LikeDeleteFilter {
   and: [LikeDeleteFilter!]
+  comentId: StringFieldComparison
   createdAt: LikeCreatedAtFilterComparison
   deletedAt: LikeDeletedAtFilterComparison
   id: LikeIdFilterComparison
   or: [LikeDeleteFilter!]
+  type: NumberFieldComparison
   updatedAt: LikeUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 type LikeDeleteResponse {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 input LikeDeletedAtFilterComparison {
@@ -502,21 +582,16 @@ input LikeDeletedAtFilterComparison {
   notIn: [DateTime!]
 }
 
-type LikeEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the Like"""
-  node: Like!
-}
-
 input LikeFilter {
   and: [LikeFilter!]
+  comentId: StringFieldComparison
   createdAt: LikeCreatedAtFilterComparison
   deletedAt: LikeDeletedAtFilterComparison
   id: LikeIdFilterComparison
   or: [LikeFilter!]
+  type: NumberFieldComparison
   updatedAt: LikeUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input LikeIdFilterComparison {
@@ -527,17 +602,23 @@ input LikeIdFilterComparison {
 }
 
 type LikeMaxAggregate {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 type LikeMinAggregate {
+  comentId: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  type: Float
   updatedAt: DateTime
+  userId: String
 }
 
 input LikeSort {
@@ -547,19 +628,29 @@ input LikeSort {
 }
 
 enum LikeSortFields {
+  comentId
   createdAt
   deletedAt
   id
+  type
   updatedAt
+  userId
+}
+
+type LikeSumAggregate {
+  type: Float
 }
 
 input LikeUpdateFilter {
   and: [LikeUpdateFilter!]
+  comentId: StringFieldComparison
   createdAt: LikeCreatedAtFilterComparison
   deletedAt: LikeDeletedAtFilterComparison
   id: LikeIdFilterComparison
   or: [LikeUpdateFilter!]
+  type: NumberFieldComparison
   updatedAt: LikeUpdatedAtFilterComparison
+  userId: StringFieldComparison
 }
 
 input LikeUpdatedAtFilterComparison {
@@ -608,6 +699,26 @@ type Mutation {
   updateOneUser(input: UpdateOneUserInput!): User!
 }
 
+input NumberFieldComparison {
+  between: NumberFieldComparisonBetween
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: Boolean
+  isNot: Boolean
+  lt: Float
+  lte: Float
+  neq: Float
+  notBetween: NumberFieldComparisonBetween
+  notIn: [Float!]
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
 type OffsetPageInfo {
   """true if paging forward and there are more records."""
   hasNextPage: Boolean
@@ -624,32 +735,39 @@ input OffsetPaging {
   offset: Int
 }
 
-type PageInfo {
-  """The cursor of the last returned record."""
-  endCursor: ConnectionCursor
-
-  """true if paging forward and there are more records."""
-  hasNextPage: Boolean
-
-  """true if paging backwards and there are more records."""
-  hasPreviousPage: Boolean
-
-  """The cursor of the first returned record."""
-  startCursor: ConnectionCursor
-}
-
 type Post {
+  category: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postBody: String!
+  postDateTime: DateTime!
+  postImageURL: String!
+  postStatus: Float!
+  postTitle: String!
+  postVisibility: Float!
+  tags: String!
   updatedAt: DateTime
 }
 
 type PostAggregateGroupBy {
+  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
+  postTitle: String
+  postVisibility: Float
+  tags: String
   updatedAt: DateTime
+}
+
+type PostAvgAggregate {
+  postStatus: Float
+  postVisibility: Float
 }
 
 type PostConnection {
@@ -664,9 +782,17 @@ type PostConnection {
 }
 
 type PostCountAggregate {
+  category: Int
   createdAt: Int
   deletedAt: Int
   id: Int
+  postBody: Int
+  postDateTime: Int
+  postImageURL: Int
+  postStatus: Int
+  postTitle: Int
+  postVisibility: Int
+  tags: Int
   updatedAt: Int
 }
 
@@ -679,17 +805,33 @@ input PostCreatedAtFilterComparison {
 
 input PostDeleteFilter {
   and: [PostDeleteFilter!]
+  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostDeleteFilter!]
+  postBody: StringFieldComparison
+  postDateTime: DateFieldComparison
+  postImageURL: StringFieldComparison
+  postStatus: NumberFieldComparison
+  postTitle: StringFieldComparison
+  postVisibility: NumberFieldComparison
+  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
 }
 
 type PostDeleteResponse {
+  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
+  postTitle: String
+  postVisibility: Float
+  tags: String
   updatedAt: DateTime
 }
 
@@ -702,10 +844,18 @@ input PostDeletedAtFilterComparison {
 
 input PostFilter {
   and: [PostFilter!]
+  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostFilter!]
+  postBody: StringFieldComparison
+  postDateTime: DateFieldComparison
+  postImageURL: StringFieldComparison
+  postStatus: NumberFieldComparison
+  postTitle: StringFieldComparison
+  postVisibility: NumberFieldComparison
+  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
 }
 
@@ -717,16 +867,32 @@ input PostIdFilterComparison {
 }
 
 type PostMaxAggregate {
+  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
+  postTitle: String
+  postVisibility: Float
+  tags: String
   updatedAt: DateTime
 }
 
 type PostMinAggregate {
+  category: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  postBody: String
+  postDateTime: DateTime
+  postImageURL: String
+  postStatus: Float
+  postTitle: String
+  postVisibility: Float
+  tags: String
   updatedAt: DateTime
 }
 
@@ -737,18 +903,39 @@ input PostSort {
 }
 
 enum PostSortFields {
+  category
   createdAt
   deletedAt
   id
+  postBody
+  postDateTime
+  postImageURL
+  postStatus
+  postTitle
+  postVisibility
+  tags
   updatedAt
+}
+
+type PostSumAggregate {
+  postStatus: Float
+  postVisibility: Float
 }
 
 input PostUpdateFilter {
   and: [PostUpdateFilter!]
+  category: StringFieldComparison
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
   or: [PostUpdateFilter!]
+  postBody: StringFieldComparison
+  postDateTime: DateFieldComparison
+  postImageURL: StringFieldComparison
+  postStatus: NumberFieldComparison
+  postTitle: StringFieldComparison
+  postVisibility: NumberFieldComparison
+  tags: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
 }
 
@@ -765,7 +952,7 @@ type Query {
     filter: CommentsFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [CommentsSort!] = []
@@ -779,7 +966,7 @@ type Query {
     filter: ComplaintFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [ComplaintSort!] = []
@@ -793,7 +980,7 @@ type Query {
     filter: LikeFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [LikeSort!] = []
@@ -821,7 +1008,7 @@ type Query {
     filter: SessionFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [SessionSort!] = []
@@ -835,7 +1022,7 @@ type Query {
     filter: UserFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [UserSort!] = []
@@ -857,11 +1044,14 @@ type SessionAggregateGroupBy {
 }
 
 type SessionConnection {
-  """Array of edges."""
-  edges: [SessionEdge!]!
+  """Array of nodes."""
+  nodes: [Session!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type SessionCountAggregate {
@@ -899,14 +1089,6 @@ input SessionDeletedAtFilterComparison {
   in: [DateTime!]
   neq: DateTime
   notIn: [DateTime!]
-}
-
-type SessionEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the Session"""
-  node: Session!
 }
 
 input SessionFilter {
@@ -978,6 +1160,23 @@ enum SortDirection {
 enum SortNulls {
   NULLS_FIRST
   NULLS_LAST
+}
+
+input StringFieldComparison {
+  eq: String
+  gt: String
+  gte: String
+  iLike: String
+  in: [String!]
+  is: Boolean
+  isNot: Boolean
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  notILike: String
+  notIn: [String!]
+  notLike: String
 }
 
 input UpdateCommentInput {
@@ -1131,6 +1330,8 @@ type User {
   deletedAt: DateTime
   id: String
   updatedAt: DateTime
+  userEmail: String!
+  userName: String!
 }
 
 type UserAggregateGroupBy {
@@ -1138,14 +1339,19 @@ type UserAggregateGroupBy {
   deletedAt: DateTime
   id: String
   updatedAt: DateTime
+  userEmail: String
+  userName: String
 }
 
 type UserConnection {
-  """Array of edges."""
-  edges: [UserEdge!]!
+  """Array of nodes."""
+  nodes: [User!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type UserCountAggregate {
@@ -1153,6 +1359,8 @@ type UserCountAggregate {
   deletedAt: Int
   id: Int
   updatedAt: Int
+  userEmail: Int
+  userName: Int
 }
 
 input UserCreatedAtFilterComparison {
@@ -1169,6 +1377,8 @@ input UserDeleteFilter {
   id: UserIdFilterComparison
   or: [UserDeleteFilter!]
   updatedAt: UserUpdatedAtFilterComparison
+  userEmail: StringFieldComparison
+  userName: StringFieldComparison
 }
 
 type UserDeleteResponse {
@@ -1176,6 +1386,8 @@ type UserDeleteResponse {
   deletedAt: DateTime
   id: String
   updatedAt: DateTime
+  userEmail: String
+  userName: String
 }
 
 input UserDeletedAtFilterComparison {
@@ -1185,14 +1397,6 @@ input UserDeletedAtFilterComparison {
   notIn: [DateTime!]
 }
 
-type UserEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the User"""
-  node: User!
-}
-
 input UserFilter {
   and: [UserFilter!]
   createdAt: UserCreatedAtFilterComparison
@@ -1200,6 +1404,8 @@ input UserFilter {
   id: UserIdFilterComparison
   or: [UserFilter!]
   updatedAt: UserUpdatedAtFilterComparison
+  userEmail: StringFieldComparison
+  userName: StringFieldComparison
 }
 
 input UserIdFilterComparison {
@@ -1214,6 +1420,8 @@ type UserMaxAggregate {
   deletedAt: DateTime
   id: String
   updatedAt: DateTime
+  userEmail: String
+  userName: String
 }
 
 type UserMinAggregate {
@@ -1221,6 +1429,8 @@ type UserMinAggregate {
   deletedAt: DateTime
   id: String
   updatedAt: DateTime
+  userEmail: String
+  userName: String
 }
 
 input UserSort {
@@ -1234,6 +1444,8 @@ enum UserSortFields {
   deletedAt
   id
   updatedAt
+  userEmail
+  userName
 }
 
 input UserUpdateFilter {
@@ -1243,6 +1455,8 @@ input UserUpdateFilter {
   id: UserIdFilterComparison
   or: [UserUpdateFilter!]
   updatedAt: UserUpdatedAtFilterComparison
+  userEmail: StringFieldComparison
+  userName: StringFieldComparison
 }
 
 input UserUpdatedAtFilterComparison {
