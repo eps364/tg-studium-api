@@ -295,6 +295,11 @@ input CreateManyPostsInput {
   posts: [CreatePostInput!]!
 }
 
+input CreateManySessionsInput {
+  """Array of records to create"""
+  sessions: [CreateSessionInput!]!
+}
+
 input CreateManyUsersInput {
   """Array of records to create"""
   users: [CreateUserInput!]!
@@ -320,6 +325,11 @@ input CreateOnePostInput {
   post: CreatePostInput!
 }
 
+input CreateOneSessionInput {
+  """The record to create"""
+  session: CreateSessionInput!
+}
+
 input CreateOneUserInput {
   """The record to create"""
   user: CreateUserInput!
@@ -334,6 +344,10 @@ input CreatePostInput {
   postTitle: String!
   postVisibility: Float!
   tags: String!
+}
+
+input CreateSessionInput {
+  token: String!
 }
 
 input CreateUserInput {
@@ -386,6 +400,11 @@ type DeleteManyResponse {
   deletedCount: Int!
 }
 
+input DeleteManySessionsInput {
+  """Filter to find records to delete"""
+  filter: SessionDeleteFilter!
+}
+
 input DeleteManyUsersInput {
   """Filter to find records to delete"""
   filter: UserDeleteFilter!
@@ -407,6 +426,11 @@ input DeleteOneLikeInput {
 }
 
 input DeleteOnePostInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneSessionInput {
   """The id of the record to delete."""
   id: ID!
 }
@@ -550,31 +574,37 @@ type Mutation {
   createManyComplaints(input: CreateManyComplaintsInput!): [Complaint!]!
   createManyLikes(input: CreateManyLikesInput!): [Like!]!
   createManyPosts(input: CreateManyPostsInput!): [Post!]!
+  createManySessions(input: CreateManySessionsInput!): [Session!]!
   createManyUsers(input: CreateManyUsersInput!): [User!]!
   createOneComments(input: CreateOneCommentsInput!): Comments!
   createOneComplaint(input: CreateOneComplaintInput!): Complaint!
   createOneLike(input: CreateOneLikeInput!): Like!
   createOnePost(input: CreateOnePostInput!): Post!
+  createOneSession(input: CreateOneSessionInput!): Session!
   createOneUser(input: CreateOneUserInput!): User!
   deleteManyComments(input: DeleteManyCommentsInput!): DeleteManyResponse!
   deleteManyComplaints(input: DeleteManyComplaintsInput!): DeleteManyResponse!
   deleteManyLikes(input: DeleteManyLikesInput!): DeleteManyResponse!
   deleteManyPosts(input: DeleteManyPostsInput!): DeleteManyResponse!
+  deleteManySessions(input: DeleteManySessionsInput!): DeleteManyResponse!
   deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
   deleteOneComments(input: DeleteOneCommentsInput!): CommentsDeleteResponse!
   deleteOneComplaint(input: DeleteOneComplaintInput!): ComplaintDeleteResponse!
   deleteOneLike(input: DeleteOneLikeInput!): LikeDeleteResponse!
   deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
+  deleteOneSession(input: DeleteOneSessionInput!): SessionDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
   updateManyComments(input: UpdateManyCommentsInput!): UpdateManyResponse!
   updateManyComplaints(input: UpdateManyComplaintsInput!): UpdateManyResponse!
   updateManyLikes(input: UpdateManyLikesInput!): UpdateManyResponse!
   updateManyPosts(input: UpdateManyPostsInput!): UpdateManyResponse!
+  updateManySessions(input: UpdateManySessionsInput!): UpdateManyResponse!
   updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
   updateOneComments(input: UpdateOneCommentsInput!): Comments!
   updateOneComplaint(input: UpdateOneComplaintInput!): Complaint!
   updateOneLike(input: UpdateOneLikeInput!): Like!
   updateOnePost(input: UpdateOnePostInput!): Post!
+  updateOneSession(input: UpdateOneSessionInput!): Session!
   updateOneUser(input: UpdateOneUserInput!): User!
 }
 
@@ -782,6 +812,20 @@ type Query {
     """Specify to sort results."""
     sorting: [PostSort!] = []
   ): PostConnection!
+  session(
+    """The id of the record to find."""
+    id: ID!
+  ): Session
+  sessions(
+    """Specify to filter the records returned."""
+    filter: SessionFilter = {}
+
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [SessionSort!] = []
+  ): SessionConnection!
   user(
     """The id of the record to find."""
     id: ID!
@@ -796,6 +840,132 @@ type Query {
     """Specify to sort results."""
     sorting: [UserSort!] = []
   ): UserConnection!
+}
+
+type Session {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type SessionAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type SessionConnection {
+  """Array of edges."""
+  edges: [SessionEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type SessionCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  updatedAt: Int
+}
+
+input SessionCreatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+input SessionDeleteFilter {
+  and: [SessionDeleteFilter!]
+  createdAt: SessionCreatedAtFilterComparison
+  deletedAt: SessionDeletedAtFilterComparison
+  id: SessionIdFilterComparison
+  or: [SessionDeleteFilter!]
+  updatedAt: SessionUpdatedAtFilterComparison
+}
+
+type SessionDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input SessionDeletedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
+}
+
+type SessionEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the Session"""
+  node: Session!
+}
+
+input SessionFilter {
+  and: [SessionFilter!]
+  createdAt: SessionCreatedAtFilterComparison
+  deletedAt: SessionDeletedAtFilterComparison
+  id: SessionIdFilterComparison
+  or: [SessionFilter!]
+  updatedAt: SessionUpdatedAtFilterComparison
+}
+
+input SessionIdFilterComparison {
+  eq: String
+  in: [String!]
+  neq: String
+  notIn: [String!]
+}
+
+type SessionMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+type SessionMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: String
+  updatedAt: DateTime
+}
+
+input SessionSort {
+  direction: SortDirection!
+  field: SessionSortFields!
+  nulls: SortNulls
+}
+
+enum SessionSortFields {
+  createdAt
+  deletedAt
+  id
+  updatedAt
+}
+
+input SessionUpdateFilter {
+  and: [SessionUpdateFilter!]
+  createdAt: SessionCreatedAtFilterComparison
+  deletedAt: SessionDeletedAtFilterComparison
+  id: SessionIdFilterComparison
+  or: [SessionUpdateFilter!]
+  updatedAt: SessionUpdatedAtFilterComparison
+}
+
+input SessionUpdatedAtFilterComparison {
+  eq: DateTime
+  in: [DateTime!]
+  neq: DateTime
+  notIn: [DateTime!]
 }
 
 """Sort Directions"""
@@ -868,6 +1038,14 @@ type UpdateManyResponse {
   updatedCount: Int!
 }
 
+input UpdateManySessionsInput {
+  """Filter used to find fields to update"""
+  filter: SessionUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateSessionInput!
+}
+
 input UpdateManyUsersInput {
   """Filter used to find fields to update"""
   filter: UserUpdateFilter!
@@ -908,6 +1086,14 @@ input UpdateOnePostInput {
   update: UpdatePostInput!
 }
 
+input UpdateOneSessionInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateSessionInput!
+}
+
 input UpdateOneUserInput {
   """The id of the record to update"""
   id: ID!
@@ -926,6 +1112,11 @@ input UpdatePostInput {
   postTitle: String
   postVisibility: Float
   tags: String
+}
+
+input UpdateSessionInput {
+  id: String!
+  token: String
 }
 
 input UpdateUserInput {

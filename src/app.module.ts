@@ -10,6 +10,7 @@ import { ComplaintModule } from './modules/complaints/complaints.module'
 import { LikeModule } from './modules/likes/likes.module'
 import { PostModule } from './modules/posts/posts.module'
 import { UserModule } from './modules/users/users.module'
+import { SessionModule } from './modules/session/session.module'
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { UserModule } from './modules/users/users.module'
         CommentModule,
         LikeModule,
         ComplaintModule,
+        SessionModule,
     ],
 
     controllers: [AppController],
