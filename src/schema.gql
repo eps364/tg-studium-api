@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddCommentsToPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input AddLikesToPostInput {
   """The id of the record."""
   id: ID!
@@ -23,6 +31,7 @@ type Comments {
   createdAt: DateTime
   deletedAt: DateTime
   id: String
+  post: Post!
   postId: String!
   updatedAt: DateTime
   userId: String!
@@ -102,8 +111,21 @@ input CommentsFilter {
   deletedAt: CommentsDeletedAtFilterComparison
   id: CommentsIdFilterComparison
   or: [CommentsFilter!]
+  post: CommentsFilterPostFilter
   postId: StringFieldComparison
   updatedAt: CommentsUpdatedAtFilterComparison
+  userId: StringFieldComparison
+}
+
+input CommentsFilterPostFilter {
+  and: [CommentsFilterPostFilter!]
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
+  or: [CommentsFilterPostFilter!]
+  postBody: StringFieldComparison
+  postTitle: StringFieldComparison
+  updatedAt: PostUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
 
@@ -653,6 +675,7 @@ input LikeUpdatedAtFilterComparison {
 }
 
 type Mutation {
+  addCommentsToPost(input: AddCommentsToPostInput!): Post!
   addLikesToPost(input: AddLikesToPostInput!): Post!
   addPostsToUser(input: AddPostsToUserInput!): User!
   createManyComments(input: CreateManyCommentsInput!): [Comments!]!
@@ -679,12 +702,16 @@ type Mutation {
   deleteOnePost(input: DeleteOnePostInput!): PostDeleteResponse!
   deleteOneSession(input: DeleteOneSessionInput!): SessionDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  removeCommentsFromPost(input: RemoveCommentsFromPostInput!): Post!
   removeLikesFromPost(input: RemoveLikesFromPostInput!): Post!
+  removePostFromComments(input: RemovePostFromCommentsInput!): Comments!
   removePostFromLike(input: RemovePostFromLikeInput!): Like!
   removePostsFromUser(input: RemovePostsFromUserInput!): User!
   removeSessionFromUser(input: RemoveSessionFromUserInput!): User!
   removeUserFromPost(input: RemoveUserFromPostInput!): Post!
+  setCommentsOnPost(input: SetCommentsOnPostInput!): Post!
   setLikesOnPost(input: SetLikesOnPostInput!): Post!
+  setPostOnComments(input: SetPostOnCommentsInput!): Comments!
   setPostOnLike(input: SetPostOnLikeInput!): Like!
   setPostsOnUser(input: SetPostsOnUserInput!): User!
   setSessionOnUser(input: SetSessionOnUserInput!): User!
@@ -740,6 +767,16 @@ input OffsetPaging {
 }
 
 type Post {
+  comments(
+    """Specify to filter the records returned."""
+    filter: CommentsFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [CommentsSort!] = []
+  ): PostCommentsConnection!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
@@ -768,6 +805,17 @@ type PostAggregateGroupBy {
   postTitle: String
   updatedAt: DateTime
   userId: String
+}
+
+type PostCommentsConnection {
+  """Array of nodes."""
+  nodes: [Comments!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type PostConnection {
@@ -829,6 +877,7 @@ input PostDeletedAtFilterComparison {
 
 input PostFilter {
   and: [PostFilter!]
+  comments: PostFilterCommentsFilter
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
@@ -838,6 +887,18 @@ input PostFilter {
   postTitle: StringFieldComparison
   updatedAt: PostUpdatedAtFilterComparison
   user: PostFilterUserFilter
+  userId: StringFieldComparison
+}
+
+input PostFilterCommentsFilter {
+  and: [PostFilterCommentsFilter!]
+  commentBody: StringFieldComparison
+  createdAt: CommentsCreatedAtFilterComparison
+  deletedAt: CommentsDeletedAtFilterComparison
+  id: CommentsIdFilterComparison
+  or: [PostFilterCommentsFilter!]
+  postId: StringFieldComparison
+  updatedAt: CommentsUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
 
@@ -1019,12 +1080,28 @@ type Query {
   ): UserConnection!
 }
 
+input RemoveCommentsFromPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input RemoveLikesFromPostInput {
   """The id of the record."""
   id: ID!
 
   """The ids of the relations."""
   relationIds: [ID!]!
+}
+
+input RemovePostFromCommentsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
 }
 
 input RemovePostFromLikeInput {
@@ -1180,12 +1257,28 @@ input SessionUpdatedAtFilterComparison {
   notIn: [DateTime!]
 }
 
+input SetCommentsOnPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input SetLikesOnPostInput {
   """The id of the record."""
   id: ID!
 
   """The ids of the relations."""
   relationIds: [ID!]!
+}
+
+input SetPostOnCommentsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
 }
 
 input SetPostOnLikeInput {

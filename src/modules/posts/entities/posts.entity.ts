@@ -1,8 +1,8 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
+import { Comment } from 'src/modules/comments/entities/comment.entity'
 import { Like } from 'src/modules/likes/entities/like.entity'
 import { User } from 'src/modules/users/entities/users.entity'
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
-
 @Entity()
 export class Post extends BaseEntity {
     @Column()
@@ -45,4 +45,7 @@ export class Post extends BaseEntity {
 
     @OneToMany(() => Like, (like) => like.post)
     likes: Like[]
+
+    @OneToMany(() => Comment, (comment) => comment.post)
+    comments: Comment[]
 }
