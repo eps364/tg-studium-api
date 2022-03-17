@@ -1,18 +1,23 @@
 import {
     FilterableField,
+    FilterableOffsetConnection,
     FilterableRelation,
 } from '@nestjs-query/query-graphql'
 import { ObjectType } from '@nestjs/graphql'
 import { BaseDTO } from 'src/common/bases/dto/base.dto'
+import { LikeDTO } from 'src/modules/likes/dto/like.dto'
 import { UserDTO } from 'src/modules/users/dto/users.dto'
 import { User } from 'src/modules/users/entities/users.entity'
 import { ManyToOne } from 'typeorm'
 
 @ObjectType('Post')
 @FilterableRelation('user', () => UserDTO)
+@FilterableOffsetConnection('likes', () => LikeDTO)
 export class PostDTO extends BaseDTO {
+    @FilterableField()
     postTitle: string
 
+    @FilterableField()
     postBody: string
 
     @ManyToOne(() => User, (user) => user.posts)

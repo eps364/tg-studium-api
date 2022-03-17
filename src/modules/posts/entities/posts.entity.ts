@@ -1,6 +1,7 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
+import { Like } from 'src/modules/likes/entities/like.entity'
 import { User } from 'src/modules/users/entities/users.entity'
-import { Column, Entity, ManyToOne } from 'typeorm'
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
 
 @Entity()
 export class Post extends BaseEntity {
@@ -41,4 +42,7 @@ export class Post extends BaseEntity {
     // TODO: Usado no agendado
     @Column({ nullable: true })
     postDateTime: Date
+
+    @OneToMany(() => Like, (like) => like.post)
+    likes: Like[]
 }

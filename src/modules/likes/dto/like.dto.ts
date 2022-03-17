@@ -1,15 +1,17 @@
-import { FilterableField } from '@nestjs-query/query-graphql'
+import {
+    FilterableField,
+    FilterableRelation,
+} from '@nestjs-query/query-graphql'
 import { ObjectType } from '@nestjs/graphql'
 import { BaseDTO } from 'src/common/bases/dto/base.dto'
+import { PostDTO } from 'src/modules/posts/dto/posts.dto'
 
 @ObjectType('Like')
+@FilterableRelation('post', () => PostDTO)
 export class LikeDTO extends BaseDTO {
     @FilterableField()
-    type: number
-
-    @FilterableField()
-    comentId: string
-
-    @FilterableField()
     userId: string
+
+    @FilterableField()
+    postId: string
 }
