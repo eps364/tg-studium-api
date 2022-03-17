@@ -10,6 +10,14 @@ input AddCommentsToPostInput {
   relationIds: [ID!]!
 }
 
+input AddComplaintsToPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input AddLikesToPostInput {
   """The id of the record."""
   id: ID!
@@ -192,27 +200,24 @@ input CommentsUpdatedAtFilterComparison {
 }
 
 type Complaint {
-  comentId: String!
+  complaitBody: String!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  type: Float!
+  post: Post!
+  postId: String!
   updatedAt: DateTime
   userId: String!
 }
 
 type ComplaintAggregateGroupBy {
-  comentId: String
+  complaitBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  type: Float
+  postId: String
   updatedAt: DateTime
   userId: String
-}
-
-type ComplaintAvgAggregate {
-  type: Float
 }
 
 type ComplaintConnection {
@@ -227,11 +232,11 @@ type ComplaintConnection {
 }
 
 type ComplaintCountAggregate {
-  comentId: Int
+  complaitBody: Int
   createdAt: Int
   deletedAt: Int
   id: Int
-  type: Int
+  postId: Int
   updatedAt: Int
   userId: Int
 }
@@ -245,22 +250,22 @@ input ComplaintCreatedAtFilterComparison {
 
 input ComplaintDeleteFilter {
   and: [ComplaintDeleteFilter!]
-  comentId: StringFieldComparison
+  complaitBody: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintDeleteFilter!]
-  type: NumberFieldComparison
+  postId: StringFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
 
 type ComplaintDeleteResponse {
-  comentId: String
+  complaitBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  type: Float
+  postId: String
   updatedAt: DateTime
   userId: String
 }
@@ -274,13 +279,26 @@ input ComplaintDeletedAtFilterComparison {
 
 input ComplaintFilter {
   and: [ComplaintFilter!]
-  comentId: StringFieldComparison
+  complaitBody: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintFilter!]
-  type: NumberFieldComparison
+  post: ComplaintFilterPostFilter
+  postId: StringFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
+  userId: StringFieldComparison
+}
+
+input ComplaintFilterPostFilter {
+  and: [ComplaintFilterPostFilter!]
+  createdAt: PostCreatedAtFilterComparison
+  deletedAt: PostDeletedAtFilterComparison
+  id: PostIdFilterComparison
+  or: [ComplaintFilterPostFilter!]
+  postBody: StringFieldComparison
+  postTitle: StringFieldComparison
+  updatedAt: PostUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
 
@@ -292,21 +310,21 @@ input ComplaintIdFilterComparison {
 }
 
 type ComplaintMaxAggregate {
-  comentId: String
+  complaitBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  type: Float
+  postId: String
   updatedAt: DateTime
   userId: String
 }
 
 type ComplaintMinAggregate {
-  comentId: String
+  complaitBody: String
   createdAt: DateTime
   deletedAt: DateTime
   id: String
-  type: Float
+  postId: String
   updatedAt: DateTime
   userId: String
 }
@@ -318,27 +336,23 @@ input ComplaintSort {
 }
 
 enum ComplaintSortFields {
-  comentId
+  complaitBody
   createdAt
   deletedAt
   id
-  type
+  postId
   updatedAt
   userId
 }
 
-type ComplaintSumAggregate {
-  type: Float
-}
-
 input ComplaintUpdateFilter {
   and: [ComplaintUpdateFilter!]
-  comentId: StringFieldComparison
+  complaitBody: StringFieldComparison
   createdAt: ComplaintCreatedAtFilterComparison
   deletedAt: ComplaintDeletedAtFilterComparison
   id: ComplaintIdFilterComparison
   or: [ComplaintUpdateFilter!]
-  type: NumberFieldComparison
+  postId: StringFieldComparison
   updatedAt: ComplaintUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
@@ -352,13 +366,13 @@ input ComplaintUpdatedAtFilterComparison {
 
 input CreateCommentInput {
   commentBody: String!
-  postId: Float!
+  postId: String!
   userId: String!
 }
 
 input CreateComplaintInput {
-  comentId: String!
-  type: Float!
+  complaitBody: String!
+  postId: String!
   userId: String!
 }
 
@@ -676,6 +690,7 @@ input LikeUpdatedAtFilterComparison {
 
 type Mutation {
   addCommentsToPost(input: AddCommentsToPostInput!): Post!
+  addComplaintsToPost(input: AddComplaintsToPostInput!): Post!
   addLikesToPost(input: AddLikesToPostInput!): Post!
   addPostsToUser(input: AddPostsToUserInput!): User!
   createManyComments(input: CreateManyCommentsInput!): [Comments!]!
@@ -703,15 +718,19 @@ type Mutation {
   deleteOneSession(input: DeleteOneSessionInput!): SessionDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
   removeCommentsFromPost(input: RemoveCommentsFromPostInput!): Post!
+  removeComplaintsFromPost(input: RemoveComplaintsFromPostInput!): Post!
   removeLikesFromPost(input: RemoveLikesFromPostInput!): Post!
   removePostFromComments(input: RemovePostFromCommentsInput!): Comments!
+  removePostFromComplaint(input: RemovePostFromComplaintInput!): Complaint!
   removePostFromLike(input: RemovePostFromLikeInput!): Like!
   removePostsFromUser(input: RemovePostsFromUserInput!): User!
   removeSessionFromUser(input: RemoveSessionFromUserInput!): User!
   removeUserFromPost(input: RemoveUserFromPostInput!): Post!
   setCommentsOnPost(input: SetCommentsOnPostInput!): Post!
+  setComplaintsOnPost(input: SetComplaintsOnPostInput!): Post!
   setLikesOnPost(input: SetLikesOnPostInput!): Post!
   setPostOnComments(input: SetPostOnCommentsInput!): Comments!
+  setPostOnComplaint(input: SetPostOnComplaintInput!): Complaint!
   setPostOnLike(input: SetPostOnLikeInput!): Like!
   setPostsOnUser(input: SetPostsOnUserInput!): User!
   setSessionOnUser(input: SetSessionOnUserInput!): User!
@@ -728,26 +747,6 @@ type Mutation {
   updateOnePost(input: UpdateOnePostInput!): Post!
   updateOneSession(input: UpdateOneSessionInput!): Session!
   updateOneUser(input: UpdateOneUserInput!): User!
-}
-
-input NumberFieldComparison {
-  between: NumberFieldComparisonBetween
-  eq: Float
-  gt: Float
-  gte: Float
-  in: [Float!]
-  is: Boolean
-  isNot: Boolean
-  lt: Float
-  lte: Float
-  neq: Float
-  notBetween: NumberFieldComparisonBetween
-  notIn: [Float!]
-}
-
-input NumberFieldComparisonBetween {
-  lower: Float!
-  upper: Float!
 }
 
 type OffsetPageInfo {
@@ -777,6 +776,16 @@ type Post {
     """Specify to sort results."""
     sorting: [CommentsSort!] = []
   ): PostCommentsConnection!
+  complaints(
+    """Specify to filter the records returned."""
+    filter: ComplaintFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [ComplaintSort!] = []
+  ): PostComplaintsConnection!
   createdAt: DateTime
   deletedAt: DateTime
   id: String
@@ -810,6 +819,17 @@ type PostAggregateGroupBy {
 type PostCommentsConnection {
   """Array of nodes."""
   nodes: [Comments!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type PostComplaintsConnection {
+  """Array of nodes."""
+  nodes: [Complaint!]!
 
   """Paging information"""
   pageInfo: OffsetPageInfo!
@@ -878,6 +898,7 @@ input PostDeletedAtFilterComparison {
 input PostFilter {
   and: [PostFilter!]
   comments: PostFilterCommentsFilter
+  complaints: PostFilterComplaintFilter
   createdAt: PostCreatedAtFilterComparison
   deletedAt: PostDeletedAtFilterComparison
   id: PostIdFilterComparison
@@ -899,6 +920,18 @@ input PostFilterCommentsFilter {
   or: [PostFilterCommentsFilter!]
   postId: StringFieldComparison
   updatedAt: CommentsUpdatedAtFilterComparison
+  userId: StringFieldComparison
+}
+
+input PostFilterComplaintFilter {
+  and: [PostFilterComplaintFilter!]
+  complaitBody: StringFieldComparison
+  createdAt: ComplaintCreatedAtFilterComparison
+  deletedAt: ComplaintDeletedAtFilterComparison
+  id: ComplaintIdFilterComparison
+  or: [PostFilterComplaintFilter!]
+  postId: StringFieldComparison
+  updatedAt: ComplaintUpdatedAtFilterComparison
   userId: StringFieldComparison
 }
 
@@ -1088,6 +1121,14 @@ input RemoveCommentsFromPostInput {
   relationIds: [ID!]!
 }
 
+input RemoveComplaintsFromPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input RemoveLikesFromPostInput {
   """The id of the record."""
   id: ID!
@@ -1097,6 +1138,14 @@ input RemoveLikesFromPostInput {
 }
 
 input RemovePostFromCommentsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input RemovePostFromComplaintInput {
   """The id of the record."""
   id: ID!
 
@@ -1265,6 +1314,14 @@ input SetCommentsOnPostInput {
   relationIds: [ID!]!
 }
 
+input SetComplaintsOnPostInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input SetLikesOnPostInput {
   """The id of the record."""
   id: ID!
@@ -1274,6 +1331,14 @@ input SetLikesOnPostInput {
 }
 
 input SetPostOnCommentsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetPostOnComplaintInput {
   """The id of the record."""
   id: ID!
 
@@ -1345,14 +1410,14 @@ input StringFieldComparison {
 input UpdateCommentInput {
   commentBody: String
   id: Float!
-  postId: Float
+  postId: String
   userId: String
 }
 
 input UpdateComplaintInput {
-  comentId: String
+  complaitBody: String
   id: Float!
-  type: Float
+  postId: String
   userId: String
 }
 

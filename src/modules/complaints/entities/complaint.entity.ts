@@ -1,16 +1,18 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
-import { Column, Entity } from 'typeorm'
+import { Post } from 'src/modules/posts/entities/posts.entity'
+import { Column, Entity, ManyToOne } from 'typeorm'
 
 @Entity()
 export class Complaint extends BaseEntity {
-    // TODO: Tabela ou ENUM
-    // TODO: Comments, Posts
-    @Column()
-    type: number
-
-    @Column()
-    comentId: string
-
     @Column()
     userId: string
+
+    @Column()
+    complaitBody: string
+
+    @ManyToOne(() => Post, (post) => post.comments)
+    post: Post
+
+    @Column()
+    postId: string
 }

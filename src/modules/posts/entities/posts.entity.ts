@@ -1,5 +1,6 @@
 import { BaseEntity } from 'src/common/bases/entities/base.entity'
 import { Comment } from 'src/modules/comments/entities/comment.entity'
+import { Complaint } from 'src/modules/complaints/entities/complaint.entity'
 import { Like } from 'src/modules/likes/entities/like.entity'
 import { User } from 'src/modules/users/entities/users.entity'
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
@@ -48,4 +49,7 @@ export class Post extends BaseEntity {
 
     @OneToMany(() => Comment, (comment) => comment.post)
     comments: Comment[]
+
+    @OneToMany(() => Complaint, (complaint) => complaint.post)
+    complaints: Complaint[]
 }

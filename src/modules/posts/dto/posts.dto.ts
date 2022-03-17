@@ -6,6 +6,7 @@ import {
 import { ObjectType } from '@nestjs/graphql'
 import { BaseDTO } from 'src/common/bases/dto/base.dto'
 import { CommentDTO } from 'src/modules/comments/dto/comment.dto'
+import { ComplaintDTO } from 'src/modules/complaints/dto/complaint.dto'
 import { LikeDTO } from 'src/modules/likes/dto/like.dto'
 import { UserDTO } from 'src/modules/users/dto/users.dto'
 import { User } from 'src/modules/users/entities/users.entity'
@@ -15,6 +16,7 @@ import { ManyToOne } from 'typeorm'
 @FilterableRelation('user', () => UserDTO)
 @FilterableOffsetConnection('likes', () => LikeDTO)
 @FilterableOffsetConnection('comments', () => CommentDTO)
+@FilterableOffsetConnection('complaints', () => ComplaintDTO)
 export class PostDTO extends BaseDTO {
     @FilterableField()
     postTitle: string
