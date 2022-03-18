@@ -1,4 +1,4 @@
-import { createConnection } from 'typeorm';
+import { createConnection } from 'typeorm'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config()
