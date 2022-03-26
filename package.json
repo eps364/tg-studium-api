@@ -1,10 +1,10 @@
 {
   "name": "tg-studium-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "homepage": "https://studium.blog.br",
+  "description": "API - Blog Studium",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -85,5 +85,31 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "contributors": [
+    {
+      "name": "Emerson Pereira da Silva",
+      "email": "pereiradasilva.emerson@gmail.com",
+      "url": "https://github.com/eps364"
+    },
+    {
+      "name": "Luiz Filipe Binotti",
+      "email": "filipe.binotti@gmail.com"
+    },
+    {
+      "name": "Thaynara Polettini",
+      "email": "thaynarasant.pol@gmail.com",
+      "url": "https://github.com/ThaynaraSantP"
+    },
+    {
+      "name": "Uric Bonatti Cardoso",
+      "email": "uricbonatti.eng@gmail.com",
+      "url": "https://github.com/uricbonatti"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eps364/tg-studium-api"
   }
+
 }
